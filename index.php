@@ -1,3 +1,20 @@
+<?php
+/* Displays user information and some useful messages */
+session_start();
+
+// Check if user is logged in using the session variable
+if ( $_SESSION['logged_in'] != 1 ) {
+  $_SESSION['message'] = "You must log in before viewing your profile page!";
+  header("location: error.php");    
+}
+else {
+    // Makes it easier to read
+    $first_name = $_SESSION['first_name'];
+    $last_name = $_SESSION['last_name'];
+    $email = $_SESSION['email'];
+    $active = $_SESSION['active'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +23,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <!--Boostrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    <title>Secure your Files</title>
+    <title>Welcome <?= $first_name.' '.$last_name ?></title>
     <!-- CSS External link  -->
     <link rel="stylesheet" href="index.css">
     <!--Javascript External link -->
     <script src="index.js"></script>
+    <!-- icon tab-->
+    <link rel="icon" href="icon.jpeg">
 </head>
 <!--SET bk color to info and animated-->
 <body id="main" class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="75"  aria-busy=""aria-valuemin="0" aria-valuemax="100" style="width: 100%">
@@ -18,6 +37,34 @@
 <audio id="bk_music" controls loop autoplay hidden="hidden">
   <source src="bensound-energy.mp3" type="audio/mpeg">
 </audio>
+          <p>
+          <?php 
+     
+          // Display message about account verification link only once
+          if ( isset($_SESSION['message']) )
+          {
+              echo $_SESSION['message'];
+              
+              // Don't annoy the user with more messages upon page refresh
+              unset( $_SESSION['message'] );
+          }
+          
+          ?>
+          </p>
+          
+          <?php
+          
+          // Keep reminding the user this account is not active, until they activate
+          if ( !$active ){
+              echo
+              '<div class="info">
+              Account is unverified, please confirm your email by clicking
+              on the email link!
+              </div>';
+          }
+          
+          ?>
+          
 <!--Header tag-->
    <header class="mt-3">
          <!--Audio button to mute/unmute background music -->
