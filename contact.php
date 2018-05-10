@@ -34,7 +34,6 @@ else {
 <!--SET bk color to info and animated-->
 <body id="main" class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="75"  aria-busy=""aria-valuemin="0" aria-valuemax="100" style="width: 100%">
 <!--Audio source with autoplay as soon as websites loads which will keep looping and its hidden from the user -->
- 
 <audio id="bk_music" controls loop autoplay hidden="hidden">
   <source src="bensound-energy.mp3" type="audio/mpeg">
 </audio>
@@ -64,8 +63,7 @@ else {
               </div>';
           }
           
-          ?>
-          
+          ?>        
 <!--Header tag-->
    <header class="mt-3">
          <!--Audio button to mute/unmute background music -->
@@ -112,14 +110,29 @@ else {
           </div>
     </nav>
  </header>
- <section class="mt-5">
-    <div class="container">
-        <p class="text-xl-center"><font size="24">This is a website that is made by Marley Ebejer, from here you can download the application and start securing files to it as many as you like. Also, here you can leave feedback and do other cool stuff!!!
-       </font></p> 
-     </div>
- </section>
-   
-   
+<?php include('form_process.php'); ?>
+<link rel="stylesheet" href="form.css" type="text/css">
+<div class="container">  
+  <form id="contact" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
+    <h3>Contact</h3>
+    <h4>Send Us Feedback, and get reply shortly!</h4>
+    <fieldset>
+      <input placeholder="Your Email Address..." type="text" name="email" value="<?= $email ?>" tabindex="2">
+      <span class="error"><?= $email_error ?></span>
+    </fieldset>
+    <fieldset>
+    <fieldset>
+      <textarea placeholder="Enter Feedback Here..." value="<?= $message ?>" name="message" tabindex="5">
+      </textarea>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+    <div class="success"><?= $success ?></div>
+    <div class="error"><?= $error ?></div>
+  </form>
+</div>
+  
     <!--Boostrap JS-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

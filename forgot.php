@@ -23,7 +23,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
         
         $email = $user['email'];
         $hash = $user['hash'];
-        $first_name = $user['first_name'];
+        $first_name = $user['name'];
 
         // Session message to display on success.php
         $_SESSION['message'] = "<p>Please check your email <span>$email</span>"
