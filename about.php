@@ -29,41 +29,14 @@ else {
     <script src="index.js"></script>
     <!-- icon tab-->
     <link rel="icon" href="icon.jpeg">
-   
+    
 </head>
 <!--SET bk color to info and animated-->
-<body id="main" class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="75"  aria-busy=""aria-valuemin="0" aria-valuemax="100" style="width: 100%"onload="onLoad()">
+<body id="main" class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="75"  aria-busy=""aria-valuemin="0" aria-valuemax="100" style="width: 100%">
 <!--Audio source with autoplay as soon as websites loads which will keep looping and its hidden from the user -->
 <audio id="bk_music" controls loop autoplay hidden="hidden">
   <source src="bensound-energy.mp3" type="audio/mpeg">
-</audio>
-          <p>
-          <?php 
-     
-          // Display message about account verification link only once
-          if ( isset($_SESSION['message']) )
-          {
-              echo $_SESSION['message'];
-              
-              // Don't annoy the user with more messages upon page refresh
-              unset( $_SESSION['message'] );
-          }
-          
-          ?>
-          </p>
-          
-          <?php
-          
-          // Keep reminding the user this account is not active, until they activate
-          if ( !$active ){
-              echo
-              '<div class="info">
-              Account is unverified, please confirm your email by clicking
-              on the email link!
-              </div>';
-          }
-          
-          ?>        
+</audio>     
 <!--Header tag-->
    <header class="mt-3">
          <!--Audio button to mute/unmute background music -->
@@ -110,46 +83,51 @@ else {
           </div>
     </nav>
  </header>
-<?php include('form_process.php'); ?>
-<link rel="stylesheet" href="form.css" type="text/css">
-<div class="container">  
-  <form id="contact" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
-    <h3>Contact</h3>
-    <h4>Send Us Feedback, and get reply shortly!</h4>
-    <fieldset>
-      <input placeholder="Your Email Address..." type="text" name="email" value="<?= $email ?>" tabindex="2">
-      <span class="error"><?= $email_error ?></span>
-    </fieldset>
-    <fieldset>
-    <fieldset>
-      <textarea placeholder="Enter Feedback Here..." value="<?= $message ?>" name="message" tabindex="5"></textarea>
-    </fieldset>
-    <fieldset>
-      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" onclick="showLoader()">Submit</button>
-    </fieldset>
-    <div class="success"><?= $success ?></div>
-    <div class="error"><?= $error ?></div>
-    <div  id="loader" class="sk-circle" >
-      <div class="sk-circle1 sk-child"></div>
-      <div class="sk-circle2 sk-child"></div>
-      <div class="sk-circle3 sk-child"></div>
-      <div class="sk-circle4 sk-child"></div>
-      <div class="sk-circle5 sk-child"></div>
-      <div class="sk-circle6 sk-child"></div>
-      <div class="sk-circle7 sk-child"></div>
-      <div class="sk-circle8 sk-child"></div>
-      <div class="sk-circle9 sk-child"></div>
-      <div class="sk-circle10 sk-child"></div>
-      <div class="sk-circle11 sk-child"></div>
-      <div class="sk-circle12 sk-child"></div>
-    </div>
+<section id="about">
+			<h1>Information About the Application </h1>
+			<button class="accordion">What is the Purpose of the applicaton?</button>
+			<div class="panel">
+					<p>This application is a secure file application where you can use it to save and store files in folders that only you have access to.</p>
+			</div>
+			<button class="accordion">What it has different from other similiar application?</button>
+			<div class="panel">
+				<p>This application can be used also when you are offline(dont have any source of internet) as most of similiar apps are base with internet requirment</p>
+			</div>
+			<button class="accordion">How can you get this app?</button>
+			<div class="panel">
+				<p>The app can be downloaded direct from our site or you can find it online and download from there</p>
+			</div>
+			<button class="accordion">Is it free?</button>
+			<div class="panel">
+				<p>Yes it is completely free to use and secure files in safe hands with no worries :D</p>
+			</div>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+			</script>
+			<script>
+				var acc = document.getElementsByClassName("accordion");
+				var i;
+
+				for (i = 0; i < acc.length; i++) {
+					acc[i].onclick = function() {
+					this.classList.toggle("active");
+					var panel = this.nextElementSibling;
+					if (panel.style.maxHeight){
+						panel.style.maxHeight = null;
+					} else {
+							panel.style.maxHeight = panel.scrollHeight + "px";
+							} 
+					}
+				}
+			</script>
+
+		</section>	
   
-  </form>
-  
-</div>
     <!--Boostrap JS-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+

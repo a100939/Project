@@ -3,28 +3,24 @@ require 'db.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
-
-
 //Define variables
     $email_error = "";
     $email = $message = $error = $success = "";
-
 //form is submitted with POST method
-
-
 if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) 
 {   
     $email = $mysqli->escape_string($_POST['email']);
     $result = $mysqli->query("SELECT * FROM users WHERE email='$email'");
-
     
     if (empty($_POST["email"])) {
+         sleep(1);
          $email_error = "Email is required"; 
          
     }
     else{
         if ( $result->num_rows == 0 ) // User doesn't exist
         { 
+            sleep(1);
             $email_error = "User with that email doesn't exist!";
           
         }
@@ -38,11 +34,13 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
         
         if($active ==  false)
         {
+            sleep(1);
             $email_error = "You need to active account first!!";
         }
             else{ 
                 
                 if (empty($_POST["message"])) {
+                    sleep(1);
                     $error ="Message Needs to be filled!!";
                     $message = "";
                 } 
@@ -50,7 +48,6 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
                 else{
                     
                 
-
                 
                 $mail = new PHPMailer(true);   
         
@@ -69,7 +66,9 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
                 $mail->Subject ='Feedback from '.$first_name.' with email: '.$email;
                 $mail->Body = test_input($_POST["message"]);
                 $mail->send();
+                sleep(2);
                 $success = "Message has been sent, thank you for contacting us!";
+               
             }    
              if ($email_error == ''){
                  $message_body = '';
@@ -85,9 +84,6 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
         }
     }
 }
-
-
-
       
   
   function test_input($data) {
@@ -96,17 +92,4 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
   $data = htmlspecialchars($data);
   return $data;
 }
-
-
-
 ?>
-
-
-
-
-
-  
-
-
-
-

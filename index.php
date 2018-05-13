@@ -30,6 +30,7 @@ else {
     <script src="index.js"></script>
     <!-- icon tab-->
     <link rel="icon" href="icon.jpeg">
+    <base target="_self">
 </head>
 <!--SET bk color to info and animated-->
 <body id="main" class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="75"  aria-busy=""aria-valuemin="0" aria-valuemax="100" style="width: 100%">
