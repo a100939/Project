@@ -30,6 +30,7 @@ else {
     <script src="index.js"></script>
     <!-- icon tab-->
     <link rel="icon" href="icon.jpeg">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <base target="_self">
 </head>
 <!--SET bk color to info and animated-->
@@ -106,21 +107,18 @@ else {
                         </div>
                   </li>
              </ul>
-             <form class="form-inline my-2 my-lg-0">
-                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-             </form>
           </div>
     </nav>
  </header>
  <section class="mt-5">
-    <div class="container">
-        <p class="text-xl-center"><font size="24">This is a website that is made by Marley Ebejer, from here you can download the application and start securing files to it as many as you like. Also, here you can leave feedback and do other cool stuff!!!
+    <div class="w3-container w3-center w3-animate-top">
+        <p ><font size="24">This is a website that is made by Marley Ebejer, from here you can download the application and start securing files to it as many as you like. Also, here you can leave feedback and do other cool stuff!!!
        </font></p> 
      </div>
  </section>
-   
-   
+            <footer style=" position: fixed; width: 100%; left: 0; bottom: 0; text-align: center;">
+                Made by Marley Ebejer
+           </footer>
     <!--Boostrap JS-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
