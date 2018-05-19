@@ -9,6 +9,7 @@
  * @author omar
  */
 
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +20,7 @@ import javax.swing.JOptionPane;
 import org.mindrot.jbcrypt.BCrypt;
 
 
-public class CreateFolder extends javax.swing.JFrame {
+public class DeleteFolder extends javax.swing.JFrame {
     public static int user_id;
     public static int folder_count;
     public static int id;
@@ -32,7 +33,7 @@ public class CreateFolder extends javax.swing.JFrame {
    
     PreparedStatement pst=null;
     ResultSet rs=null;
-    public CreateFolder() {
+    public DeleteFolder() {
         initComponents();
         LoginForm use = new LoginForm();
         use.conn= MySqlConnect.ConnectDB();
@@ -60,8 +61,9 @@ public class CreateFolder extends javax.swing.JFrame {
                
                folder_name.add(use.rs.getString("name"));
                user_id = use.id;
-               
-           }
+              
+              
+           } 
         } catch (SQLException ex) {
             Logger.getLogger(Welcome.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -83,14 +85,11 @@ public class CreateFolder extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabelMin = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        register_btn = new javax.swing.JButton();
+        delete_btn = new javax.swing.JButton();
         cancel_btn = new javax.swing.JButton();
         loging_link = new javax.swing.JLabel();
         folder_name_lbl = new javax.swing.JLabel();
-        folder_name_tf = new javax.swing.JTextField();
-        folder_name_lbl1 = new javax.swing.JLabel();
-        yes_rb = new javax.swing.JRadioButton();
-        no_rb = new javax.swing.JRadioButton();
+        folderDelete_name_tf = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -155,17 +154,17 @@ public class CreateFolder extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(44, 62, 80));
 
-        register_btn.setBackground(new java.awt.Color(153, 255, 153));
-        register_btn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        register_btn.setForeground(new java.awt.Color(255, 255, 255));
-        register_btn.setText("Create");
-        register_btn.addActionListener(new java.awt.event.ActionListener() {
+        delete_btn.setBackground(new java.awt.Color(255, 51, 51));
+        delete_btn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        delete_btn.setForeground(new java.awt.Color(255, 255, 255));
+        delete_btn.setText("Delete");
+        delete_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                register_btnActionPerformed(evt);
+                delete_btnActionPerformed(evt);
             }
         });
 
-        cancel_btn.setBackground(new java.awt.Color(242, 38, 19));
+        cancel_btn.setBackground(new java.awt.Color(102, 102, 102));
         cancel_btn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cancel_btn.setForeground(new java.awt.Color(255, 255, 255));
         cancel_btn.setText("Cancel");
@@ -189,34 +188,12 @@ public class CreateFolder extends javax.swing.JFrame {
         folder_name_lbl.setForeground(new java.awt.Color(236, 240, 241));
         folder_name_lbl.setText("Folder Name:");
 
-        folder_name_tf.setBackground(new java.awt.Color(108, 122, 137));
-        folder_name_tf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        folder_name_tf.setForeground(new java.awt.Color(228, 241, 254));
-        folder_name_tf.addActionListener(new java.awt.event.ActionListener() {
+        folderDelete_name_tf.setBackground(new java.awt.Color(108, 122, 137));
+        folderDelete_name_tf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        folderDelete_name_tf.setForeground(new java.awt.Color(228, 241, 254));
+        folderDelete_name_tf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                folder_name_tfActionPerformed(evt);
-            }
-        });
-
-        folder_name_lbl1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        folder_name_lbl1.setForeground(new java.awt.Color(236, 240, 241));
-        folder_name_lbl1.setText("Do you want the Folder as public?");
-
-        yes_rb.setBackground(new java.awt.Color(255, 255, 255));
-        yes_rb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        yes_rb.setText("Yes ");
-        yes_rb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yes_rbActionPerformed(evt);
-            }
-        });
-
-        no_rb.setBackground(new java.awt.Color(255, 255, 255));
-        no_rb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        no_rb.setText("No");
-        no_rb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                no_rbActionPerformed(evt);
+                folderDelete_name_tfActionPerformed(evt);
             }
         });
 
@@ -231,24 +208,15 @@ public class CreateFolder extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(98, 98, 98)
                 .addComponent(cancel_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(yes_rb)
-                    .addComponent(register_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addComponent(delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(122, 122, 122))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(folder_name_lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(no_rb)
-                        .addGap(83, 83, 83))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(folder_name_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
-                        .addComponent(folder_name_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68))))
+                .addGap(37, 37, 37)
+                .addComponent(folder_name_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(folderDelete_name_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,15 +226,10 @@ public class CreateFolder extends javax.swing.JFrame {
                 .addGap(92, 92, 92)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(folder_name_lbl)
-                    .addComponent(folder_name_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                    .addComponent(folderDelete_name_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(208, 208, 208)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(folder_name_lbl1)
-                    .addComponent(no_rb)
-                    .addComponent(yes_rb))
-                .addGap(126, 126, 126)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(register_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancel_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
@@ -308,10 +271,10 @@ public class CreateFolder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabelMinMouseClicked
 
-    private void folder_name_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_folder_name_tfActionPerformed
+    private void folderDelete_name_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_folderDelete_name_tfActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_folder_name_tfActionPerformed
+    }//GEN-LAST:event_folderDelete_name_tfActionPerformed
 
     private void loging_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loging_linkMouseClicked
         LoginForm lgf = new LoginForm();
@@ -322,57 +285,39 @@ public class CreateFolder extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_loging_linkMouseClicked
   
-    private void register_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_btnActionPerformed
+    private void delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_btnActionPerformed
         
         conn= MySqlConnect.ConnectDB();
-        String Sql ="INSERT INTO folders(name,is_public,user_id) VALUES(?,?,?)";
+        String Sql ="DELETE FROM folders WHERE name=?";
     
          try
         {
             
 
                 pst=conn.prepareStatement(Sql);
-                
-                if (folder_count >=10) {
-                 JOptionPane.showMessageDialog(null,"Maximum Folders achieved!!");
-                 JOptionPane.showMessageDialog(null,"Delete folders in order to add!!");
-                }
-                else{
-                if (folder_name.contains(folder_name_tf.getText())) {
-                JOptionPane.showMessageDialog(null,"folder already exits");
-                }
-                else{
-                pst.setString(1,folder_name_tf.getText()); 
-                
-                }
-                if (yes_rb.isSelected()) 
-                {
-                    pst.setBoolean(2, true);
-                }
-                else if(no_rb.isSelected())
-                {
-                    pst.setBoolean(2, false);
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null,"Select one radio button");
-                }
-                pst.setInt(3,id);
-         
+                pst.setString(1, folderDelete_name_tf.getText());
                 pst.executeUpdate();
-                folder_count++;
-               JOptionPane.showMessageDialog(null,"New folder added successfull");
-                Welcome wlc = new Welcome();
-                wlc.setVisible(true);
-                wlc.pack();
-                wlc.setLocationRelativeTo(null);
-                wlc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                this.dispose();
+                
+                if (folder_name.contains(folderDelete_name_tf.getText())) {
+                     
+                     JOptionPane.showMessageDialog(null,"Folder deleted successfull");
+                     folder_name.clear();
+                    Welcome wlc = new Welcome();
+                    wlc.setVisible(true);
+                    wlc.pack();
+                    wlc.setLocationRelativeTo(null);
+                    wlc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    this.dispose();
+               
+                }
+                else{ JOptionPane.showMessageDialog(null,"folder doesn't exits exits");}
+                
+             
                if (rs.next()) {
-
+                    
                  
                }
-                }
+                
         }catch(Exception e)
         {
            
@@ -380,7 +325,7 @@ public class CreateFolder extends javax.swing.JFrame {
  
      
 
-    }//GEN-LAST:event_register_btnActionPerformed
+    }//GEN-LAST:event_delete_btnActionPerformed
 
     private void cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_btnActionPerformed
        Welcome wlc = new Welcome();
@@ -390,16 +335,6 @@ public class CreateFolder extends javax.swing.JFrame {
         wlc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_cancel_btnActionPerformed
-
-    private void yes_rbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yes_rbActionPerformed
-        // TODO add your handling code here:
-        no_rb.setSelected(false);
-    }//GEN-LAST:event_yes_rbActionPerformed
-
-    private void no_rbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_no_rbActionPerformed
-        // TODO add your handling code here:
-        yes_rb.setSelected(false);
-    }//GEN-LAST:event_no_rbActionPerformed
 
     /**
      * @param args the command line arguments
@@ -439,17 +374,14 @@ public class CreateFolder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel_btn;
+    private javax.swing.JButton delete_btn;
+    private javax.swing.JTextField folderDelete_name_tf;
     private javax.swing.JLabel folder_name_lbl;
-    private javax.swing.JLabel folder_name_lbl1;
-    private javax.swing.JTextField folder_name_tf;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelClose;
     private javax.swing.JLabel jLabelMin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel loging_link;
-    private javax.swing.JRadioButton no_rb;
-    private javax.swing.JButton register_btn;
-    private javax.swing.JRadioButton yes_rb;
     // End of variables declaration//GEN-END:variables
 }

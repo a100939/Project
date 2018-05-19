@@ -20,6 +20,8 @@ public class LoginForm extends javax.swing.JFrame {
     /**
      * Creates new form LoginForm
      */
+    public static int id;
+    public static String name;
     Connection conn=null;
     PreparedStatement pst=null;
     ResultSet rs=null;
@@ -247,6 +249,7 @@ public class LoginForm extends javax.swing.JFrame {
     private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
         // TODO add your handling code here:
         conn= MySqlConnect.ConnectDB();
+      
         String Sql="SELECT * FROM users where email=? and name=?";
                  
                
@@ -258,8 +261,10 @@ public class LoginForm extends javax.swing.JFrame {
             rs=pst.executeQuery();
             if(rs.next())
             {
-                
+                 JOptionPane.showMessageDialog(null,"Connected to database");
                 JOptionPane.showMessageDialog(null,"Welcome "+ rs.getString("name"));
+                id =rs.getInt("id");
+                name = rs.getString("name");
                 Welcome w=new Welcome();
                 
                 w.setVisible(true);

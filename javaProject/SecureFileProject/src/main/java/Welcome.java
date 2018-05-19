@@ -40,7 +40,7 @@ public class Welcome extends javax.swing.JFrame {
             use.rs=use.pst.executeQuery();
             if(use.rs.next())
             {
-                this.title_lbl.setText("Secure Files "+use.rs.getString("name"));
+                this.title_lbl.setText("Secure Files "+use.name);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Welcome.class.getName()).log(Level.SEVERE, null, ex);
@@ -262,6 +262,12 @@ public class Welcome extends javax.swing.JFrame {
 
     private void delete_folder_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_folder_btnActionPerformed
         // TODO add your handling code here:
+        DeleteFolder df = new DeleteFolder();
+        df.setVisible(true);
+        df.pack();
+        df.setLocationRelativeTo(null);
+        df.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
     }//GEN-LAST:event_delete_folder_btnActionPerformed
 
     private void use_folder_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_use_folder_btnActionPerformed

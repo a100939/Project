@@ -19,7 +19,7 @@ public class MySqlConnect {
             Class.forName("com.mysql.jdbc.Driver");
             String connectionURL="jdbc:mysql://localhost:3306/project";
             Connection conn =DriverManager.getConnection(connectionURL,"root","");
-            JOptionPane.showMessageDialog(null,"Connected to database");
+            
             return conn;
          
         }
