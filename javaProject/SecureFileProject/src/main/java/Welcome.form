@@ -185,7 +185,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="52" max="32767" attributes="0"/>
+                  <EmptySpace min="52" pref="6" max="32767" attributes="0"/>
                   <Component id="delete_folder_btn" min="-2" pref="210" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               </Group>

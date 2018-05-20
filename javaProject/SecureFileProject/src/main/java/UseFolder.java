@@ -9,6 +9,8 @@
  * @author omar
  */
 
+
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,52 +21,39 @@ import javax.swing.JOptionPane;
 import org.mindrot.jbcrypt.BCrypt;
 
 
-public class CreateFolder extends javax.swing.JFrame {
-    public static int user_id;
-    public static    int folder_count;
+public class UseFolder extends javax.swing.JFrame {
+
+    public static String folder_name;
     public static int id;
-    public static  ArrayList<String> folder_name=new ArrayList<String>();
+    public static int folder_id;
+    public static  ArrayList<String> file_name=new ArrayList<String>(); 
  
     /**
      * Creates new form RegisterForm
      */
     Connection conn=null;
-   
     PreparedStatement pst=null;
     ResultSet rs=null;
-    public CreateFolder() {
+    public UseFolder() {
         initComponents();
-        LoginForm use = new LoginForm();
-        use.conn= MySqlConnect.ConnectDB();
-        String Sql="SELECT * FROM users";
-        try {
-            use.pst=use.conn.prepareStatement(Sql);
-            use.rs=use.pst.executeQuery();
-            if(use.rs.next())
-            {
-               id=use.rs.getInt("id");
+         LoginForm use = new LoginForm();
+         use.conn= MySqlConnect.ConnectDB();
+         String Sql="SELECT * FROM folders";
+         try {
+             use.pst=use.conn.prepareStatement(Sql);
+             use.rs=use.pst.executeQuery();
+             while(use.rs.next())
+             {
+                id=use.rs.getInt("id");
              
-            }
-            
+             }
            
-            use.conn= MySqlConnect.ConnectDB();
-            
-            String Sql2="SELECT * FROM folders";
            
-            use.pst=use.conn.prepareStatement(Sql2);
-             
-            use.rs=use.pst.executeQuery();
-          
-           while(use.rs.next())
-           {
-               
-               folder_name.add(use.rs.getString("name"));
-               user_id = use.id;
-               
-           }
+            
         } catch (SQLException ex) {
             Logger.getLogger(Welcome.class.getName()).log(Level.SEVERE, null, ex);
         }
+                
                 
    
     }
@@ -87,10 +76,11 @@ public class CreateFolder extends javax.swing.JFrame {
         cancel_btn = new javax.swing.JButton();
         loging_link = new javax.swing.JLabel();
         folder_name_lbl = new javax.swing.JLabel();
-        folder_name_tf = new javax.swing.JTextField();
+        folderSelect_name_tf = new javax.swing.JTextField();
         folder_name_lbl1 = new javax.swing.JLabel();
-        yes_rb = new javax.swing.JRadioButton();
-        no_rb = new javax.swing.JRadioButton();
+        file_name_tf = new javax.swing.JTextField();
+        folder_name_lbl2 = new javax.swing.JLabel();
+        file_type_cb = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -110,7 +100,7 @@ public class CreateFolder extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(51, 204, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Secure Files -Create Folder");
+        jLabel2.setText("Secure Files - Use Folder");
 
         jLabelMin.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelMin.setForeground(new java.awt.Color(255, 255, 255));
@@ -187,38 +177,35 @@ public class CreateFolder extends javax.swing.JFrame {
 
         folder_name_lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         folder_name_lbl.setForeground(new java.awt.Color(236, 240, 241));
-        folder_name_lbl.setText("Folder Name:");
+        folder_name_lbl.setText("Select Folder:");
 
-        folder_name_tf.setBackground(new java.awt.Color(108, 122, 137));
-        folder_name_tf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        folder_name_tf.setForeground(new java.awt.Color(228, 241, 254));
-        folder_name_tf.addActionListener(new java.awt.event.ActionListener() {
+        folderSelect_name_tf.setBackground(new java.awt.Color(108, 122, 137));
+        folderSelect_name_tf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        folderSelect_name_tf.setForeground(new java.awt.Color(228, 241, 254));
+        folderSelect_name_tf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                folder_name_tfActionPerformed(evt);
+                folderSelect_name_tfActionPerformed(evt);
             }
         });
 
         folder_name_lbl1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         folder_name_lbl1.setForeground(new java.awt.Color(236, 240, 241));
-        folder_name_lbl1.setText("Do you want the Folder as public?");
+        folder_name_lbl1.setText("Enter File Name:");
 
-        yes_rb.setBackground(new java.awt.Color(255, 255, 255));
-        yes_rb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        yes_rb.setText("Yes ");
-        yes_rb.addActionListener(new java.awt.event.ActionListener() {
+        file_name_tf.setBackground(new java.awt.Color(108, 122, 137));
+        file_name_tf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        file_name_tf.setForeground(new java.awt.Color(228, 241, 254));
+        file_name_tf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yes_rbActionPerformed(evt);
+                file_name_tfActionPerformed(evt);
             }
         });
 
-        no_rb.setBackground(new java.awt.Color(255, 255, 255));
-        no_rb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        no_rb.setText("No");
-        no_rb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                no_rbActionPerformed(evt);
-            }
-        });
+        folder_name_lbl2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        folder_name_lbl2.setForeground(new java.awt.Color(236, 240, 241));
+        folder_name_lbl2.setText("Select File type:");
+
+        file_type_cb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { ".txt", ".jpeg", ".docs", ".mp3" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -228,27 +215,28 @@ public class CreateFolder extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(loging_link)
                 .addGap(30, 30, 30))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(folder_name_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(folder_name_lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(folder_name_lbl2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(file_name_tf)
+                            .addComponent(file_type_cb, 0, 188, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(folderSelect_name_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(68, 68, 68))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
+                .addGap(71, 71, 71)
                 .addComponent(cancel_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(yes_rb)
-                    .addComponent(register_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(122, 122, 122))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(folder_name_lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(no_rb)
-                        .addGap(83, 83, 83))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(folder_name_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
-                        .addComponent(folder_name_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68))))
+                .addComponent(register_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,17 +246,20 @@ public class CreateFolder extends javax.swing.JFrame {
                 .addGap(92, 92, 92)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(folder_name_lbl)
-                    .addComponent(folder_name_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                    .addComponent(folderSelect_name_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(91, 91, 91)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(folder_name_lbl1)
-                    .addComponent(no_rb)
-                    .addComponent(yes_rb))
-                .addGap(126, 126, 126)
+                    .addComponent(file_name_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(110, 110, 110)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(register_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancel_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                    .addComponent(folder_name_lbl2)
+                    .addComponent(file_type_cb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(77, 77, 77)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancel_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(register_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -276,21 +267,21 @@ public class CreateFolder extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 2, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -308,10 +299,10 @@ public class CreateFolder extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabelMinMouseClicked
 
-    private void folder_name_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_folder_name_tfActionPerformed
+    private void folderSelect_name_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_folderSelect_name_tfActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_folder_name_tfActionPerformed
+    }//GEN-LAST:event_folderSelect_name_tfActionPerformed
 
     private void loging_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loging_linkMouseClicked
         LoginForm lgf = new LoginForm();
@@ -323,57 +314,56 @@ public class CreateFolder extends javax.swing.JFrame {
     }//GEN-LAST:event_loging_linkMouseClicked
   
     private void register_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_btnActionPerformed
-        
-        conn= MySqlConnect.ConnectDB();
-        String Sql ="INSERT INTO folders(name,is_public,user_id) VALUES(?,?,?)";
-    
+         CreateFolder use = new CreateFolder();
+         conn= MySqlConnect.ConnectDB();
+         String Sql="INSERT INTO files(name,path,folder_id) VALUES(?,?,?)";
+       
          try
-        {
+        {   
+            pst=conn.prepareStatement(Sql);
+            use.conn= MySqlConnect.ConnectDB();
+            String Sql2="SELECT * FROM folders WHERE name=?";
+            use.pst=use.conn.prepareStatement(Sql2);
+           
+            if (use.folder_name.contains(folderSelect_name_tf.getText())) {
+                 
+                    use.pst.setString(1, folderSelect_name_tf.getText());
+                    use.rs=use.pst.executeQuery();
             
-
-                pst=conn.prepareStatement(Sql);
-                
-                if (folder_count >=10) {
-                 JOptionPane.showMessageDialog(null,"Maximum Folders achieved!!");
-                 JOptionPane.showMessageDialog(null,"Delete folders in order to add!!");
-                }
-                else{
-                if (folder_name.contains(folder_name_tf.getText())) {
-                JOptionPane.showMessageDialog(null,"folder already exits");
-                }
-                else{
-                pst.setString(1,folder_name_tf.getText()); 
-                
-                }
-                if (yes_rb.isSelected()) 
-                {
-                    pst.setBoolean(2, true);
-                }
-                else if(no_rb.isSelected())
-                {
-                    pst.setBoolean(2, false);
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null,"Select one radio button");
-                }
-                pst.setInt(3,id);
-         
+            
+           while(use.rs.next())
+            {
+               
+              
+                   folder_id = use.rs.getInt("id");
+               
+       
+               
+           }
+           
+            if (file_name.contains(file_name_tf.getText())) {
+                JOptionPane.showMessageDialog(null,"File Already Exists");
+           }
+            else{  
+                pst.setString(1,file_name_tf.getText());
+                file_name.add(file_name_tf.getText());
+                pst.setString(2, (String) file_type_cb.getSelectedItem());
+          
+                pst.setInt(3,folder_id);
                 pst.executeUpdate();
-                folder_count++;
-               JOptionPane.showMessageDialog(null,"New folder added successfull");
+                JOptionPane.showMessageDialog(null,"New file added successfull");
                 Welcome wlc = new Welcome();
                 wlc.setVisible(true);
                 wlc.pack();
                 wlc.setLocationRelativeTo(null);
                 wlc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 this.dispose();
-               if (rs.next()) {
-
-                 
-               }
-                }
-        }catch(Exception e)
+             }
+             }
+            else{JOptionPane.showMessageDialog(null,"Folder Does not exists");}
+            }
+        
+      catch(Exception e)
         {
            
         }  
@@ -391,15 +381,9 @@ public class CreateFolder extends javax.swing.JFrame {
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_cancel_btnActionPerformed
 
-    private void yes_rbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yes_rbActionPerformed
+    private void file_name_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_file_name_tfActionPerformed
         // TODO add your handling code here:
-        no_rb.setSelected(false);
-    }//GEN-LAST:event_yes_rbActionPerformed
-
-    private void no_rbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_no_rbActionPerformed
-        // TODO add your handling code here:
-        yes_rb.setSelected(false);
-    }//GEN-LAST:event_no_rbActionPerformed
+    }//GEN-LAST:event_file_name_tfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -439,17 +423,29 @@ public class CreateFolder extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel_btn;
+    private javax.swing.JTextField file_name_tf;
+    private javax.swing.JComboBox<String> file_type_cb;
+    private javax.swing.JTextField folderSelect_name_tf;
     private javax.swing.JLabel folder_name_lbl;
     private javax.swing.JLabel folder_name_lbl1;
-    private javax.swing.JTextField folder_name_tf;
+    private javax.swing.JLabel folder_name_lbl2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelClose;
     private javax.swing.JLabel jLabelMin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel loging_link;
-    private javax.swing.JRadioButton no_rb;
     private javax.swing.JButton register_btn;
-    private javax.swing.JRadioButton yes_rb;
     // End of variables declaration//GEN-END:variables
 }
+  
+                
+              
+
+            
+            
+           
+       
+             
+           
+          

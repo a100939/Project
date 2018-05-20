@@ -47,7 +47,7 @@ public class DeleteFolder extends javax.swing.JFrame {
              
             }
             
-            JOptionPane.showMessageDialog(null,id);
+           
             use.conn= MySqlConnect.ConnectDB();
             
             String Sql2="SELECT * FROM folders";
@@ -109,7 +109,7 @@ public class DeleteFolder extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(51, 204, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Secure Files -Create Folder");
+        jLabel2.setText("Secure Files -Delete Folder");
 
         jLabelMin.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelMin.setForeground(new java.awt.Color(255, 255, 255));
@@ -212,22 +212,22 @@ public class DeleteFolder extends javax.swing.JFrame {
                 .addComponent(delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(122, 122, 122))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(72, 72, 72)
                 .addComponent(folder_name_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(68, 68, 68)
                 .addComponent(folderDelete_name_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(loging_link)
-                .addGap(92, 92, 92)
+                .addGap(159, 159, 159)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(folder_name_lbl)
                     .addComponent(folderDelete_name_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(208, 208, 208)
+                .addGap(141, 141, 141)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancel_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -292,7 +292,7 @@ public class DeleteFolder extends javax.swing.JFrame {
     
          try
         {
-            
+              
 
                 pst=conn.prepareStatement(Sql);
                 pst.setString(1, folderDelete_name_tf.getText());
@@ -300,8 +300,9 @@ public class DeleteFolder extends javax.swing.JFrame {
                 
                 if (folder_name.contains(folderDelete_name_tf.getText())) {
                      
-                     JOptionPane.showMessageDialog(null,"Folder deleted successfull");
-                     folder_name.clear();
+                    JOptionPane.showMessageDialog(null,"Folder deleted successfull");
+                    folder_name.clear();
+                  
                     Welcome wlc = new Welcome();
                     wlc.setVisible(true);
                     wlc.pack();

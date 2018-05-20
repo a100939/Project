@@ -272,6 +272,12 @@ public class Welcome extends javax.swing.JFrame {
 
     private void use_folder_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_use_folder_btnActionPerformed
         // TODO add your handling code here:
+         UseFolder uf = new UseFolder();
+         uf.setVisible(true);
+         uf.pack();
+         uf.setLocationRelativeTo(null);
+         uf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         this.dispose();
     }//GEN-LAST:event_use_folder_btnActionPerformed
 
     /**

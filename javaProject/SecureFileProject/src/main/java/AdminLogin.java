@@ -15,7 +15,7 @@ import javax.swing.*;
  *
  * @author omar
  */
-public class LoginForm extends javax.swing.JFrame {
+public class AdminLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form LoginForm
@@ -25,7 +25,7 @@ public class LoginForm extends javax.swing.JFrame {
     Connection conn=null;
     PreparedStatement pst=null;
     ResultSet rs=null;
-    public LoginForm() {
+    public AdminLogin() {
         initComponents();
         this.setLocationRelativeTo(null);// center form in the screen
     }
@@ -69,7 +69,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         title_lbl.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         title_lbl.setForeground(new java.awt.Color(255, 255, 255));
-        title_lbl.setText("Login Form");
+        title_lbl.setText("Admin Login");
 
         dash_lbl.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         dash_lbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,7 +120,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         password_lbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         password_lbl.setForeground(new java.awt.Color(236, 240, 241));
-        password_lbl.setText("Your Name:");
+        password_lbl.setText("Password");
 
         email_tf.setBackground(new java.awt.Color(108, 122, 137));
         email_tf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -152,7 +152,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         new_link.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         new_link.setForeground(new java.awt.Color(255, 255, 255));
-        new_link.setText("click here to login as admin");
+        new_link.setText("click here to login as user");
         new_link.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         new_link.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -238,12 +238,12 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_dash_lblMouseClicked
 
     private void new_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_new_linkMouseClicked
-        AdminLogin adl = new AdminLogin();
-        adl.setVisible(true);
-        adl.pack();
-        adl.setLocationRelativeTo(null);
-        adl.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        AdminLogin rgf = new AdminLogin();
+        rgf.setVisible(true);
+        rgf.pack();
+        rgf.setLocationRelativeTo(null);
+        rgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       this.dispose();
     }//GEN-LAST:event_new_linkMouseClicked
 
     private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
