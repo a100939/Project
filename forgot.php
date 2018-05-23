@@ -41,7 +41,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
         $mail->Port = 587;                                    // TCP port to connect to
 
         //Recipients
-        $mail->setFrom('securefiles2017.2018@gmail.com', 'Marley');
+        $mail->setFrom('securefiles2017.2018@gmail.com', 'SecureFiles');
         $mail->addAddress($email);     // Add a recipient
         
         $mail->isHTML(true);                                  // Set email format to HTML

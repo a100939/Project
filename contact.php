@@ -34,9 +34,7 @@ else {
 <!--SET bk color to info and animated-->
 <body id="main" class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="75"  aria-busy=""aria-valuemin="0" aria-valuemax="100" style="width: 100%"onload="onLoad()">
 <!--Audio source with autoplay as soon as websites loads which will keep looping and its hidden from the user -->
-<audio id="bk_music" controls loop autoplay hidden="hidden">
-  <source src="bensound-energy.mp3" type="audio/mpeg">
-</audio>
+
           <p>
           <?php 
      
@@ -66,14 +64,6 @@ else {
           ?>        
 <!--Header tag-->
    <header class="mt-3">
-         <!--Audio button to mute/unmute background music -->
-
-         <button role="button" aria-pressed="true" onclick="mute_music()">
-               <img src="mute_music.jpeg" alt="Mute Image"id="mute_image">
-         </button>
-         <button role="button" aria-pressed="true" onclick="unmute_music()" >
-             <img src="unmute_music.jpeg" alt="Unmute Image"id="unmute_image">
-         </button>
         <!--Title -->
         <h1>SECURE YOUR DATA<img id="logo" src="logo.jpeg" alt="Logo" style="width:100px; height:100px; margin-top:-5px;padding: 30px"> </h1>
         
@@ -144,7 +134,7 @@ else {
 </div>
             <footer style=" position: fixed; width: 100%; left: 0; bottom: 0; text-align: center;">
                 Made by Marley Ebejer
-           </footer>>
+           </footer>
     <!--Boostrap JS-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

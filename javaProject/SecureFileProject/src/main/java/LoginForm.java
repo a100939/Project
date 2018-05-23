@@ -1,9 +1,15 @@
 
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import javax.swing.*;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,6 +26,10 @@ public class LoginForm extends javax.swing.JFrame {
     /**
      * Creates new form LoginForm
      */
+    long time = System.currentTimeMillis();
+    java.sql.Date date = new java.sql.Date(time);
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    public static String date_string;
     public static int id;
     public static String name;
     Connection conn=null;
@@ -28,6 +38,7 @@ public class LoginForm extends javax.swing.JFrame {
     public LoginForm() {
         initComponents();
         this.setLocationRelativeTo(null);// center form in the screen
+          date_string = sdf.format(date);
     }
 
     /**
@@ -149,10 +160,15 @@ public class LoginForm extends javax.swing.JFrame {
         cancel_btn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cancel_btn.setForeground(new java.awt.Color(255, 255, 255));
         cancel_btn.setText("Cancel");
+        cancel_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_btnActionPerformed(evt);
+            }
+        });
 
         new_link.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         new_link.setForeground(new java.awt.Color(255, 255, 255));
-        new_link.setText("click here to login as admin");
+        new_link.setText("click here to login as administrator");
         new_link.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         new_link.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -258,23 +274,40 @@ public class LoginForm extends javax.swing.JFrame {
             pst=conn.prepareStatement(Sql);
             pst.setString(1, email_tf.getText());
             pst.setString(2,String.valueOf(password_tf.getPassword()));
+           
             rs=pst.executeQuery();
             if(rs.next())
             {
-                 JOptionPane.showMessageDialog(null,"Connected to database");
+                JOptionPane.showMessageDialog(null,"Connected to database");
                 JOptionPane.showMessageDialog(null,"Welcome "+ rs.getString("name"));
+                String dateup ="UPDATE users SET last_logged=? WHERE email=?";
+                pst=conn.prepareStatement(dateup);
+                
+                pst.setString(2,email_tf.getText());
+                pst.setDate(1, date);
+                pst.executeUpdate();
                 id =rs.getInt("id");
                 name = rs.getString("name");
+               
+                if (rs.getBoolean("is_blocked")==false) {
+                    
+                
                 Welcome w=new Welcome();
                 
                 w.setVisible(true);
                 this.dispose();
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(null,"Invalid username or name","Access Denied", JOptionPane.ERROR_MESSAGE);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"User blocked by Administrator","Access Denied", JOptionPane.ERROR_MESSAGE);
+                }
+           }
+            
+          else
+          {
+                JOptionPane.showMessageDialog(null,"Invalid email or name","Access Denied", JOptionPane.ERROR_MESSAGE);
                 
-            }   
+         }   
         }catch(Exception e)
         {
             JOptionPane.showMessageDialog(null, e);
@@ -284,6 +317,11 @@ public class LoginForm extends javax.swing.JFrame {
     private void email_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_email_tfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_email_tfActionPerformed
+
+    private void cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_btnActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_cancel_btnActionPerformed
 
     
     /**

@@ -15,6 +15,7 @@ public class MySqlConnect {
     {
          try
         {
+            
             //connection to database
             Class.forName("com.mysql.jdbc.Driver");
             String connectionURL="jdbc:mysql://localhost:3306/project";

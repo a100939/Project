@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
           
           <div class="field-wrap">
             <label>
-              Set A Password<span class="req">*</span>
+             New Password<span class="req">*</span>
             </label>
             <input type="password"required autocomplete="off" name='password'/>
           </div>

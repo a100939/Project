@@ -33,20 +33,9 @@ else {
 </head>
 <!--SET bk color to info and animated-->
 <body id="main" class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="75"  aria-busy=""aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-<!--Audio source with autoplay as soon as websites loads which will keep looping and its hidden from the user -->
-<audio id="bk_music" controls loop autoplay hidden="hidden">
-  <source src="bensound-energy.mp3" type="audio/mpeg">
-</audio>     
+<!--Audio source with autoplay as soon as websites loads which will keep looping and its hidden from the user -->   
 <!--Header tag-->
    <header class="mt-3">
-         <!--Audio button to mute/unmute background music -->
-
-         <button role="button" aria-pressed="true" onclick="mute_music()">
-               <img src="mute_music.jpeg" alt="Mute Image"id="mute_image">
-         </button>
-         <button role="button" aria-pressed="true" onclick="unmute_music()" >
-             <img src="unmute_music.jpeg" alt="Unmute Image"id="unmute_image">
-         </button>
         <!--Title -->
         <h1>SECURE YOUR DATA<img id="logo" src="logo.jpeg" alt="Logo" style="width:100px; height:100px; margin-top:-5px;padding: 30px"> </h1>
         

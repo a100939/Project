@@ -68,7 +68,6 @@ public class AdminLogin extends javax.swing.JFrame {
         });
 
         title_lbl.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        title_lbl.setForeground(new java.awt.Color(255, 255, 255));
         title_lbl.setText("Admin Login");
 
         dash_lbl.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -149,6 +148,11 @@ public class AdminLogin extends javax.swing.JFrame {
         cancel_btn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cancel_btn.setForeground(new java.awt.Color(255, 255, 255));
         cancel_btn.setText("Cancel");
+        cancel_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_btnActionPerformed(evt);
+            }
+        });
 
         new_link.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         new_link.setForeground(new java.awt.Color(255, 255, 255));
@@ -238,19 +242,19 @@ public class AdminLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_dash_lblMouseClicked
 
     private void new_linkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_new_linkMouseClicked
-        AdminLogin rgf = new AdminLogin();
-        rgf.setVisible(true);
-        rgf.pack();
-        rgf.setLocationRelativeTo(null);
-        rgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       this.dispose();
+       LoginForm lgf = new LoginForm();
+        lgf.setVisible(true);
+        lgf.pack();
+        lgf.setLocationRelativeTo(null);
+        lgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
     }//GEN-LAST:event_new_linkMouseClicked
 
     private void login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_btnActionPerformed
         // TODO add your handling code here:
         conn= MySqlConnect.ConnectDB();
       
-        String Sql="SELECT * FROM users where email=? and name=?";
+        String Sql="SELECT * FROM administrator where email=? and password=?";
                  
                
         try
@@ -261,18 +265,15 @@ public class AdminLogin extends javax.swing.JFrame {
             rs=pst.executeQuery();
             if(rs.next())
             {
-                 JOptionPane.showMessageDialog(null,"Connected to database");
-                JOptionPane.showMessageDialog(null,"Welcome "+ rs.getString("name"));
-                id =rs.getInt("id");
-                name = rs.getString("name");
-                Welcome w=new Welcome();
-                
+                JOptionPane.showMessageDialog(null,"Connected to database");
+                JOptionPane.showMessageDialog(null,"Welcome Adminstrator "+ rs.getInt("id"));
+                AdminPanel w=new AdminPanel();
                 w.setVisible(true);
                 this.dispose();
             }
             else
             {
-                JOptionPane.showMessageDialog(null,"Invalid username or name","Access Denied", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Invalid email or name","Access Denied", JOptionPane.ERROR_MESSAGE);
                 
             }   
         }catch(Exception e)
@@ -284,6 +285,11 @@ public class AdminLogin extends javax.swing.JFrame {
     private void email_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_email_tfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_email_tfActionPerformed
+
+    private void cancel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_btnActionPerformed
+          // TODO add your handling code here:
+          this.dispose();
+    }//GEN-LAST:event_cancel_btnActionPerformed
 
     
     /**

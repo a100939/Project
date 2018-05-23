@@ -57,7 +57,7 @@ else { // Email doesn't already exist in a database, proceed...
         $mail->Port = 587;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('securefiles2017.2018@gmail.com', 'Marley');
+    $mail->setFrom('securefiles2017.2018@gmail.com', 'SecureFiles');
     $mail->addAddress($email);     // Add a recipient
 
 
@@ -69,9 +69,7 @@ else { // Email doesn't already exist in a database, proceed...
 
         Thank you for signing up!
 
-        Please click this link to activate your account:
-
-        http://localhost/verify.php?email='.$email.'&hash='.$hash; 
+        Please click this link to activate your account: http://localhost/verify.php?email='.$email.'&hash='.$hash; 
        
         $mail->send();
         header("location: index.php"); 
