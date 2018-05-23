@@ -285,6 +285,12 @@ public class AdminPanel extends javax.swing.JFrame {
                 
                 is_blocked=rs.getBoolean("is_blocked");
                 name=rs.getString("name");
+                UserInfo lgf = new UserInfo();
+                lgf.setVisible(true);
+                lgf.pack();
+                lgf.setLocationRelativeTo(null);
+                lgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                this.dispose();
                 
                 
                 
@@ -302,12 +308,7 @@ public class AdminPanel extends javax.swing.JFrame {
         {
             
         }
-       UserInfo lgf = new UserInfo();
-        lgf.setVisible(true);
-        lgf.pack();
-        lgf.setLocationRelativeTo(null);
-        lgf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+
      
     }//GEN-LAST:event_login_btnActionPerformed
 

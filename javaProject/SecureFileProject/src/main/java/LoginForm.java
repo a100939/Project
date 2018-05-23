@@ -113,7 +113,7 @@ public class LoginForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dash_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(dash_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(exit_lbl))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +159,7 @@ public class LoginForm extends javax.swing.JFrame {
         cancel_btn.setBackground(new java.awt.Color(242, 38, 19));
         cancel_btn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cancel_btn.setForeground(new java.awt.Color(255, 255, 255));
-        cancel_btn.setText("Cancel");
+        cancel_btn.setText("Exit");
         cancel_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancel_btnActionPerformed(evt);
@@ -289,20 +289,23 @@ public class LoginForm extends javax.swing.JFrame {
                 id =rs.getInt("id");
                 name = rs.getString("name");
                
-                if (rs.getBoolean("is_blocked")==false) {
-                    
-                
-                Welcome w=new Welcome();
-                
-                w.setVisible(true);
-                this.dispose();
+                if (rs.getBoolean("active")==false) {
+                     JOptionPane.showMessageDialog(null,"Email is not ACTIVE","Access Denied", JOptionPane.ERROR_MESSAGE);
                 }
-                else
-                {
+                else{
+                    if (rs.getBoolean("is_blocked")==false) 
+                    {
+                        Welcome w=new Welcome();
+                        w.setVisible(true);
+                        this.dispose();
+                    } 
+                    else
+                    {
                     JOptionPane.showMessageDialog(null,"User blocked by Administrator","Access Denied", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-           }
-            
+            }
+                     
           else
           {
                 JOptionPane.showMessageDialog(null,"Invalid email or name","Access Denied", JOptionPane.ERROR_MESSAGE);

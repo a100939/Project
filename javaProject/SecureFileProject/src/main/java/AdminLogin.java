@@ -147,7 +147,7 @@ public class AdminLogin extends javax.swing.JFrame {
         cancel_btn.setBackground(new java.awt.Color(242, 38, 19));
         cancel_btn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cancel_btn.setForeground(new java.awt.Color(255, 255, 255));
-        cancel_btn.setText("Cancel");
+        cancel_btn.setText("Exit");
         cancel_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancel_btnActionPerformed(evt);
