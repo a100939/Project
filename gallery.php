@@ -71,6 +71,9 @@ else {
 <section id="about">
 			<h1>Gallery</h1>
 			<img  onmouseover="onMouseOn(this)" onmouseout="onMouseOut(this)" src="coming-soon.png" alt="ComingSoon">
+			            <footer style=" position: fixed; width: 100%; left: 0; bottom: 0; text-align: center;">
+                Made by Marley Ebejer
+           </footer>
 			<script>
 				function onMouseOn(x)
 				{

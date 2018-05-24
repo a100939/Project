@@ -52,7 +52,7 @@ else { // Email doesn't already exist in a database, proceed...
         $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
         $mail->Username = 'securefiles2017.2018@gmail.com';                 // SMTP username
-        $mail->Password = 'sf2017/2018';                           // SMTP password
+        $mail->Password = 'sf20172018';                           // SMTP password
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 587;                                    // TCP port to connect to
 
